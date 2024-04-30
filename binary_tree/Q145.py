@@ -20,6 +20,26 @@ class Solution:
         left_list = self.postorderTraversal(root.left)
         right_list = self.postorderTraversal(root.right)
         return left_list + right_list + [root.val]
+ 
+#%%
+# for iteration, we first get the root, right, left
+# reverse the result we get left, right, root
+#%%    
+class Solution2:
+    def postorderTraversal(self, root) -> list[int]:
+        if root == None:
+            return []
+        stack = []
+        result = []
+        stack.append(root)
+        while len(stack):
+            cur = stack.pop()
+            result.append(cur.val)
+            if cur.left:
+                stack.append(cur.left)
+            if cur.right:
+                stack.append(cur.right)
+        return result[::-1]
 
 #%%
 TN1 = TreeNode(1)
